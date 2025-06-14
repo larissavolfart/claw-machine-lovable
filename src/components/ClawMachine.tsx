@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import PlushToy from './PlushToy';
 import GameControls from './GameControls';
@@ -17,26 +16,28 @@ interface Toy {
   image: string;
 }
 
+const PLUSH_Y_OFFSET = 20; // Valor fixo para subir os toys
+
 const ClawMachine = () => {
   const [clawPosition, setClawPosition] = useState({ x: 150, y: 20 });
   const [isClawMoving, setIsClawMoving] = useState(false);
   const [isClawDescending, setIsClawDescending] = useState(false);
-  const [toys, setToys] = useState<Toy[]>([
-    { id: 1, type: 'cat-bow', position: { x: 40, y: 200 }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
-    { id: 2, type: 'dog-purple', position: { x: 160, y: 190 }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
-    { id: 3, type: 'chick-2', position: { x: 100, y: 230 }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' },
-    { id: 4, type: 'koala-blue', position: { x: 230, y: 200 }, collected: false, image: '/lovable-uploads/49fb5f07-2809-4851-bf2c-b3ae6efcd8a1.png' },
-    { id: 5, type: 'cat-bow-2', position: { x: 70, y: 180 }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
-    { id: 6, type: 'dog-purple-2', position: { x: 200, y: 220 }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
-    { id: 7, type: 'chick-3', position: { x: 130, y: 210 }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' },
-    { id: 8, type: 'koala-blue-2', position: { x: 50, y: 240 }, collected: false, image: '/lovable-uploads/49fb5f07-2809-4851-bf2c-b3ae6efcd8a1.png' },
-    { id: 9, type: 'cat-bow-3', position: { x: 180, y: 240 }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
-    { id: 10, type: 'dog-purple-3', position: { x: 220, y: 180 }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
-    { id: 11, type: 'chick-4', position: { x: 80, y: 220 }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' },
-    { id: 12, type: 'koala-blue-3', position: { x: 250, y: 240 }, collected: false, image: '/lovable-uploads/49fb5f07-2809-4851-bf2c-b3ae6efcd8a1.png' },
-    { id: 13, type: 'cat-bow-4', position: { x: 120, y: 190 }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
-    { id: 14, type: 'dog-purple-4', position: { x: 90, y: 200 }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
-    { id: 15, type: 'chick-5', position: { x: 210, y: 195 }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' }
+  const [toys, setToys] = useState([
+    { id: 1, type: 'cat-bow', position: { x: 40, y: 200 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
+    { id: 2, type: 'dog-purple', position: { x: 160, y: 190 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
+    { id: 3, type: 'chick-2', position: { x: 100, y: 230 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' },
+    { id: 4, type: 'koala-blue', position: { x: 230, y: 200 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/49fb5f07-2809-4851-bf2c-b3ae6efcd8a1.png' },
+    { id: 5, type: 'cat-bow-2', position: { x: 70, y: 180 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
+    { id: 6, type: 'dog-purple-2', position: { x: 200, y: 220 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
+    { id: 7, type: 'chick-3', position: { x: 130, y: 210 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' },
+    { id: 8, type: 'koala-blue-2', position: { x: 50, y: 240 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/49fb5f07-2809-4851-bf2c-b3ae6efcd8a1.png' },
+    { id: 9, type: 'cat-bow-3', position: { x: 180, y: 240 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
+    { id: 10, type: 'dog-purple-3', position: { x: 220, y: 180 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
+    { id: 11, type: 'chick-4', position: { x: 80, y: 220 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' },
+    { id: 12, type: 'koala-blue-3', position: { x: 250, y: 240 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/49fb5f07-2809-4851-bf2c-b3ae6efcd8a1.png' },
+    { id: 13, type: 'cat-bow-4', position: { x: 120, y: 190 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
+    { id: 14, type: 'dog-purple-4', position: { x: 90, y: 200 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
+    { id: 15, type: 'chick-5', position: { x: 210, y: 195 - PLUSH_Y_OFFSET }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' }
   ]);
   const [score, setScore] = useState(0);
   const [showSuccess, setShowSuccess] = useState<{ toy: Toy | null; show: boolean }>({ toy: null, show: false });
@@ -260,4 +261,3 @@ const ClawMachine = () => {
 };
 
 export default ClawMachine;
-
