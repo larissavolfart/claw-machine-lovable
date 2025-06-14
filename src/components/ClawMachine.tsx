@@ -16,8 +16,6 @@ interface Toy {
   image: string;
 }
 
-const machineImage = "/lovable-uploads/4ca7261a-26f4-49d7-82e1-75799a5476b6.png";
-
 const ClawMachine = () => {
   const [clawPosition, setClawPosition] = useState({ x: 150, y: 20 });
   const [isClawMoving, setIsClawMoving] = useState(false);
@@ -43,6 +41,8 @@ const ClawMachine = () => {
   const [showSuccess, setShowSuccess] = useState<{ toy: Toy | null; show: boolean }>({ toy: null, show: false });
   const [clawHasToy, setClawHasToy] = useState<Toy | null>(null);
 
+  const machineRef = useRef<HTMLDivElement>(null);
+
   const moveClawLeft = () => {
     if (isClawMoving || isClawDescending) return;
     setClawPosition(prev => ({ ...prev, x: Math.max(30, prev.x - 30) }));
@@ -55,156 +55,176 @@ const ClawMachine = () => {
 
   const dropClaw = async () => {
     if (isClawMoving || isClawDescending) return;
+    
     setIsClawDescending(true);
     setIsClawMoving(true);
+
+    // Descend
     setClawPosition(prev => ({ ...prev, y: 180 }));
+    
     await new Promise(resolve => setTimeout(resolve, 1000));
-    const caughtToy = toys.find(toy =>
+
+    // Check for toy collision
+    const caughtToy = toys.find(toy => 
       !toy.collected &&
       Math.abs(toy.position.x - clawPosition.x) < 30 &&
       Math.abs(toy.position.y - 180) < 35
     );
+
     if (caughtToy) {
       setClawHasToy(caughtToy);
-      setToys(prev => prev.map(toy =>
+      setToys(prev => prev.map(toy => 
         toy.id === caughtToy.id ? { ...toy, collected: true } : toy
       ));
     }
+
+    // Ascend
     await new Promise(resolve => setTimeout(resolve, 500));
     setClawPosition(prev => ({ ...prev, y: 20 }));
+    
     if (caughtToy) {
+      // Move to collection area
       await new Promise(resolve => setTimeout(resolve, 500));
       setClawPosition({ x: 280, y: 20 });
+      
       await new Promise(resolve => setTimeout(resolve, 800));
+      
+      // Drop toy and show success
       setClawHasToy(null);
       setScore(prev => prev + 1);
       setShowSuccess({ toy: caughtToy, show: true });
+      
       setTimeout(() => {
         setShowSuccess({ toy: null, show: false });
       }, 2000);
+      
+      // Return claw to center
       await new Promise(resolve => setTimeout(resolve, 500));
       setClawPosition({ x: 150, y: 20 });
     }
+
     setIsClawDescending(false);
     setIsClawMoving(false);
   };
 
   return (
-    <div className="relative flex flex-col items-center w-full pb-6 select-none">
-      {/* Transparent horizontal banner */}
-      <div className="w-full flex justify-center relative mb-3" style={{ zIndex: 10 }}>
-        <div
-          className="absolute left-0 right-0 mx-auto h-20"
+    <div className="relative">
+      {/* UI top section: clean counter, no stars, banner remains */}
+      <div className="relative mb-6">
+        {/* Transparent horizontal banner */}
+        <div 
+          className="absolute inset-0 w-full h-20 pixel-border"
           style={{
-            top: 0,
             background: 'linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0%, rgba(236, 72, 153, 0.3) 50%, rgba(96, 165, 250, 0.3) 100%)',
-            imageRendering: 'pixelated',
-            borderRadius: '16px',
-            width: '100%',
-            maxWidth: 440,
-            pointerEvents: 'none'
+            imageRendering: 'pixelated'
           }}
-        />
-        {/* Score number, white, centered, no text or stars */}
-        <div className="relative flex items-center justify-center w-full h-20" style={{ zIndex: 12 }}>
-          <span
-            className="text-6xl font-bold"
+        ></div>
+        {/* Centered score number only, in plain white */}
+        <div className="relative flex items-center justify-center py-6">
+          <div className="text-6xl font-bold"
             style={{
-              color: 'white',
               fontFamily: 'Arial, sans-serif',
+              color: 'white',
               textShadow: '3px 3px 0px rgba(0,0,0,0.5), -1px -1px 0px rgba(0,0,0,0.5)'
-            }}
-          >
+            }}>
             {score}
-          </span>
-        </div>
-      </div>
-
-      {/* Claw Machine Frame and Gameplay Area */}
-      <div
-        className="relative mx-auto"
-        style={{
-          width: 380,
-          height: 420,
-          maxWidth: '94vw',
-          maxHeight: '90vw',
-        }}
-      >
-        {/* User's provided pixel art machine image */}
-        <img
-          src={machineImage}
-          alt="Claw machine"
-          className="absolute left-0 top-0 w-full h-full pointer-events-none"
-          style={{ zIndex: 1, imageRendering: 'pixelated' }}
-          draggable={false}
-        />
-
-        {/* Overlay the interactive content over the "glass" region of the image */}
-        <div
-          className="absolute"
-          style={{
-            left: 44,
-            top: 68,
-            width: 288,
-            height: 272,
-            zIndex: 2,
-            overflow: 'visible'
-          }}
-        >
-          {/* Claw */}
-          <Claw
-            position={{
-              // Offset, so x: 0 aligns left edge of glass (44px), y: 0 aligns top (68px)
-              x: clawPosition.x - 44,
-              y: clawPosition.y
-            }}
-            isDescending={isClawDescending}
-            hasToy={clawHasToy}
-          />
-          {/* Plush toys (not yet collected) */}
-          {toys.filter(toy => !toy.collected).map(toy => (
-            <PlushToy
-              key={toy.id}
-              toy={{
-                ...toy,
-                // Rebase toy coordinates into the new glass area coordinates
-                position: {
-                  x: toy.position.x - 44,
-                  y: toy.position.y - 68
-                }
-              }}
-            />
-          ))}
-
-          {/* Collection box in bottom-right of play area */}
-          <div
-            className="absolute bottom-2 right-2 w-14 h-10 pixel-border"
-            style={{
-              background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-              imageRendering: 'pixelated',
-              border: '2px solid rgba(80,80,80,0.1)'
-            }}
-          >
-            <div className="text-xs text-center text-gray-800 font-bold pixel-text mt-1">📦</div>
           </div>
         </div>
       </div>
 
-      {/* Controls */}
-      <GameControls
+      {/* Machine container */}
+      <div 
+        ref={machineRef}
+        className="relative mx-auto rounded-lg p-6 shadow-2xl retro-glow"
+        style={{ 
+          width: '380px', 
+          height: '420px',
+          background: 'linear-gradient(145deg, #8B5CF6 0%, #EC4899 50%, #60A5FA 100%)',
+          border: '4px solid #4C1D95',
+          imageRendering: 'pixelated'
+        }}
+      >
+        {/* Machine Frame */}
+        <div className="absolute inset-4 rounded border-4 border-gray-800 overflow-hidden pixel-border"
+             style={{
+               background: 'linear-gradient(145deg, #FFB6C1 0%, #87CEEB 50%, #DDA0DD 100%)',
+               imageRendering: 'pixelated'
+             }}>
+          
+          {/* Top Rainbow Section */}
+          <div className="h-10 pixel-border"
+               style={{
+                 background: 'linear-gradient(90deg, #FF69B4 0%, #FFD700 25%, #00FF7F 50%, #1E90FF 75%, #9370DB 100%)',
+                 imageRendering: 'pixelated'
+               }}></div>
+          
+          {/* Glass Panel */}
+          <div className="relative h-64 border-2 border-gray-600 pixel-border"
+               style={{
+                 background: 'linear-gradient(180deg, rgba(173, 216, 230, 0.3) 0%, rgba(135, 206, 235, 0.2) 100%)',
+                 imageRendering: 'pixelated'
+               }}>
+            
+            {/* Claw */}
+            <Claw 
+              position={clawPosition} 
+              isDescending={isClawDescending}
+              hasToy={clawHasToy}
+            />
+            
+            {/* Toys */}
+            {toys.filter(toy => !toy.collected).map(toy => (
+              <PlushToy 
+                key={toy.id} 
+                toy={toy}
+              />
+            ))}
+            
+            {/* Collection Box - More Pixelated */}
+            <div className="absolute bottom-2 right-2 w-14 h-10 border-3 border-gray-800 pixel-border"
+                 style={{
+                   background: 'linear-gradient(45deg, #FFD700, #FFA500)',
+                   imageRendering: 'pixelated'
+                 }}>
+              <div className="text-xs text-center text-gray-800 font-bold pixel-text mt-1">📦</div>
+            </div>
+          </div>
+          
+          {/* Control Panel */}
+          <div className="h-14 border-t-2 border-gray-600 flex items-center justify-center pixel-border"
+               style={{
+                 background: 'linear-gradient(90deg, #9370DB 0%, #FF69B4 50%, #FFD700 100%)',
+                 imageRendering: 'pixelated'
+               }}>
+            <div className="flex space-x-3">
+              <div className="w-4 h-4 bg-red-500 border-2 border-gray-800 pixel-border animate-pulse"></div>
+              <div className="w-4 h-4 bg-yellow-400 border-2 border-gray-800 pixel-border animate-pulse"
+                   style={{ animationDelay: '0.5s' }}></div>
+              <div className="w-4 h-4 bg-green-400 border-2 border-gray-800 pixel-border animate-pulse"
+                   style={{ animationDelay: '1s' }}></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Coin Slot */}
+        <div className="absolute bottom-3 left-8 w-10 h-6 bg-gray-900 border-2 border-gray-600 pixel-border"
+             style={{ imageRendering: 'pixelated' }}></div>
+      </div>
+
+      <GameControls 
         onMoveLeft={moveClawLeft}
         onMoveRight={moveClawRight}
         onDrop={dropClaw}
         disabled={isClawMoving}
       />
 
-      {/* Success Animation */}
+      {/* Success Animation - Only +1, no text */}
       {showSuccess.show && showSuccess.toy && (
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
           <div className="bg-white rounded-lg p-8 shadow-2xl border-4 border-yellow-400 animate-bounce pixel-border retro-glow"
-            style={{ imageRendering: 'pixelated' }}>
-            <img
-              src={showSuccess.toy.image}
+               style={{ imageRendering: 'pixelated' }}>
+            <img 
+              src={showSuccess.toy.image} 
               alt="Caught toy"
               className="w-32 h-32 mx-auto mb-4 pixel-image"
               style={{
@@ -213,10 +233,10 @@ const ClawMachine = () => {
               }}
             />
             <div className="text-4xl font-bold text-center text-yellow-600 pixel-text"
-              style={{
-                fontFamily: '"Courier New", "Lucida Console", monospace',
-                textShadow: '2px 2px 0px rgba(0,0,0,0.5)'
-              }}>+1</div>
+                 style={{
+                   fontFamily: '"Courier New", "Lucida Console", monospace',
+                   textShadow: '2px 2px 0px rgba(0,0,0,0.5)'
+                 }}>+1</div>
           </div>
         </div>
       )}
