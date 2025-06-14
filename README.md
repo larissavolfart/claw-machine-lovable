@@ -1,73 +1,86 @@
-# Welcome to your Lovable project
+PT-BR: 
 
-## Project info
+### 🕹️ Máquina de Pelúcias – Projeto com IA no Lovable
 
-**URL**: https://lovable.dev/projects/819621f7-a914-421b-8c7f-cce26b9b8540
+Este é um projeto de interface de **máquina de bichinhos (claw machine)** em pixel art, totalmente gerado por inteligência artificial, criado como parte dos meus estudos e experimentos com IA e geração de UI.
 
-## How can I edit this code?
+#### 💡 Sobre o Projeto
 
-There are several ways of editing your application.
+Criei essa máquina interativa usando o **Lovable**, uma ferramenta de IA que transforma prompts de linguagem natural em interfaces front-end.
 
-**Use Lovable**
+> **O que é o Lovable?**  
+> Lovable é uma plataforma de geração de UI com inteligência artificial, que permite criar protótipos, interfaces e apps front-end a partir de simples descrições em texto. É ideal para experimentos criativos e desenvolvimento rápido.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/819621f7-a914-421b-8c7f-cce26b9b8540) and start prompting.
+Esse projeto foi feito por curiosidade e para testar a ferramenta — e eu acabei achando o resultado muito legal!
 
-Changes made via Lovable will be committed automatically to this repo.
+#### 🎨 Como foi feito
 
-**Use your preferred IDE**
+- O **prompt** usado para gerar a interface foi escrito com ajuda da **IA da Anthropic (Claude)**.
+- Os **bichinhos em pixel art** usados dentro da máquina foram gerados com a **IA ChatGPT da OpenAI**, com geração de imagens.
+- Todo o projeto foi estruturado automaticamente pelo **Lovable**, usando as tecnologias abaixo:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+#### 🛠️ Tecnologias utilizadas
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Este projeto foi construído com:
 
-Follow these steps:
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+#### 🤖 Projeto 100% gerado por IA
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Desde o design até os assets e o código, tudo neste projeto foi criado com auxílio de ferramentas de inteligência artificial — como parte da minha jornada de aprendizado em IA.
 
-# Step 3: Install the necessary dependencies.
-npm i
+#### 🌐 Demo online
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+👉 [Demonstração](https://claw-machine-lovable.vercel.app/)
 
-**Edit a file directly in GitHub**
+Fique à vontade para clonar, remixar ou apenas se inspirar! 
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Feito por Larissa Volfart da Rocha.
+____________________________________________________________________________________________________________________________________________________________________________
 
-**Use GitHub Codespaces**
+EN:
+### 🕹️ Plushie Claw Machine – AI Project with Lovable
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This is a **pixel art claw machine interface project**, entirely generated using artificial intelligence, created as part of my personal studies and experiments in AI and generative UI design.
 
-## What technologies are used for this project?
+#### 💡 About the Project
 
-This project is built with:
+I built this interactive machine using **Lovable**, an AI tool that turns natural language prompts into working front-end interfaces.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+> **What is Lovable?**  
+> Lovable is an AI-based UI generation platform that allows you to create prototypes, interfaces, and front-end apps from simple text descriptions. It's perfect for creative experiments and rapid development.
 
-## How can I deploy this project?
+This project was created out of curiosity to test the tool — and I ended up really enjoying the result!
 
-Simply open [Lovable](https://lovable.dev/projects/819621f7-a914-421b-8c7f-cce26b9b8540) and click on Share -> Publish.
+#### 🎨 How It Was Made
 
-## Can I connect a custom domain to my Lovable project?
+- The **prompt** used to generate the interface was written with help from **Anthropic’s AI (Claude)**.  
+- The **pixel art plushies** inside the machine were generated using **OpenAI's ChatGPT**, with image generation capabilities.  
+- The entire project was scaffolded automatically by **Lovable**, using the following technologies:
 
-Yes, you can!
+#### 🛠️ Tech Stack
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This project was built with:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- [Vite](https://vitejs.dev/)  
+- [TypeScript](https://www.typescriptlang.org/)  
+- [React](https://reactjs.org/)  
+- [shadcn/ui](https://ui.shadcn.com/)  
+- [Tailwind CSS](https://tailwindcss.com/)  
+
+#### 🤖 Fully AI-Generated
+
+From design to assets and code, every part of this project was created with the help of AI tools — as part of my journey into learning and exploring artificial intelligence.
+
+#### 🌐 Live Demo
+
+👉 [Live Demo](https://claw-machine-lovable.vercel.app/)
+
+Feel free to clone it, remix it, or simply get inspired!
+
+Created by **Larissa Volfart da Rocha**.
+
