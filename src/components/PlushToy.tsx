@@ -26,7 +26,7 @@ const PlushToy = ({ toy }: PlushToyProps) => {
       <img 
         src={toy.image} 
         alt={toy.type}
-        className="w-16 h-16 pixel-image"
+        className="w-20 h-20 pixel-image"
         style={{
           imageRendering: 'pixelated',
           filter: 'drop-shadow(3px 3px 6px rgba(0,0,0,0.4)) brightness(1.1) saturate(1.2)',

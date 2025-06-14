@@ -26,13 +26,16 @@ const ClawMachine = () => {
     { id: 3, type: 'spider-bear', position: { x: 100, y: 230 }, collected: false, image: '/lovable-uploads/52d86918-1734-4ea8-99c2-1cc158096ec4.png' },
     { id: 4, type: 'chick', position: { x: 230, y: 200 }, collected: false, image: '/lovable-uploads/5b153179-98d3-4238-8948-8c5ecf92fdb4.png' },
     { id: 5, type: 'koala', position: { x: 70, y: 180 }, collected: false, image: '/lovable-uploads/626e6b90-65e5-445c-9992-262a23efcd8a.png' },
-    { id: 6, type: 'cat-2', position: { x: 200, y: 220 }, collected: false, image: '/lovable-uploads/f455a38f-b9ea-45e5-ba94-deeb13ec613c.png' },
-    { id: 7, type: 'dog-2', position: { x: 130, y: 210 }, collected: false, image: '/lovable-uploads/d8d933a2-a6c4-41d8-8ae9-eca93026bec4.png' },
-    { id: 8, type: 'spider-bear-2', position: { x: 50, y: 240 }, collected: false, image: '/lovable-uploads/52d86918-1734-4ea8-99c2-1cc158096ec4.png' },
-    { id: 9, type: 'chick-2', position: { x: 180, y: 240 }, collected: false, image: '/lovable-uploads/5b153179-98d3-4238-8948-8c5ecf92fdb4.png' },
-    { id: 10, type: 'koala-2', position: { x: 220, y: 180 }, collected: false, image: '/lovable-uploads/626e6b90-65e5-445c-9992-262a23efcd8a.png' },
+    { id: 6, type: 'cat-bow', position: { x: 200, y: 220 }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
+    { id: 7, type: 'dog-purple', position: { x: 130, y: 210 }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
+    { id: 8, type: 'spider-bear-2', position: { x: 50, y: 240 }, collected: false, image: '/lovable-uploads/dbd9fc4f-fbb6-44eb-adc1-ec1b683d6111.png' },
+    { id: 9, type: 'chick-2', position: { x: 180, y: 240 }, collected: false, image: '/lovable-uploads/5f2d3e4e-8703-4321-a0ba-3d8efce5df42.png' },
+    { id: 10, type: 'koala-blue', position: { x: 220, y: 180 }, collected: false, image: '/lovable-uploads/49fb5f07-2809-4851-bf2c-b3ae6efcd8a1.png' },
     { id: 11, type: 'cat-3', position: { x: 80, y: 220 }, collected: false, image: '/lovable-uploads/f455a38f-b9ea-45e5-ba94-deeb13ec613c.png' },
-    { id: 12, type: 'dog-3', position: { x: 250, y: 240 }, collected: false, image: '/lovable-uploads/d8d933a2-a6c4-41d8-8ae9-eca93026bec4.png' }
+    { id: 12, type: 'dog-3', position: { x: 250, y: 240 }, collected: false, image: '/lovable-uploads/d8d933a2-a6c4-41d8-8ae9-eca93026bec4.png' },
+    { id: 13, type: 'cat-bow-2', position: { x: 120, y: 190 }, collected: false, image: '/lovable-uploads/31a95875-ffa3-4ed6-9e67-d1cf2f048490.png' },
+    { id: 14, type: 'dog-purple-2', position: { x: 90, y: 200 }, collected: false, image: '/lovable-uploads/e8d0132b-4379-4d0b-8d25-f8e984a41cb7.png' },
+    { id: 15, type: 'spider-bear-3', position: { x: 210, y: 195 }, collected: false, image: '/lovable-uploads/dbd9fc4f-fbb6-44eb-adc1-ec1b683d6111.png' }
   ]);
   const [score, setScore] = useState(0);
   const [showSuccess, setShowSuccess] = useState<{ toy: Toy | null; show: boolean }>({ toy: null, show: false });
@@ -197,7 +200,7 @@ const ClawMachine = () => {
         disabled={isClawMoving}
       />
 
-      {/* Success Animation */}
+      {/* Success Animation - Only +1, no text */}
       {showSuccess.show && showSuccess.toy && (
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
           <div className="bg-white rounded-lg p-8 shadow-2xl border-4 border-yellow-400 animate-bounce pixel-border retro-glow"
@@ -211,8 +214,11 @@ const ClawMachine = () => {
                 imageRendering: 'pixelated'
               }}
             />
-            <div className="text-4xl font-bold text-center text-yellow-600 pixel-text">+1</div>
-            <div className="text-xl font-bold text-center text-gray-800 pixel-text">✨ Amazing! ✨</div>
+            <div className="text-4xl font-bold text-center text-yellow-600 pixel-text"
+                 style={{
+                   fontFamily: '"Courier New", "Lucida Console", monospace',
+                   textShadow: '2px 2px 0px rgba(0,0,0,0.5)'
+                 }}>+1</div>
           </div>
         </div>
       )}
