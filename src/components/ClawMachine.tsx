@@ -109,17 +109,73 @@ const ClawMachine = () => {
 
   return (
     <div className="relative">
-      <div className="text-center mb-6">
-        <div className="text-4xl font-bold text-white"
-             style={{
-               fontFamily: 'Arial, sans-serif',
-               fontWeight: 'bold',
-               color: 'white'
-             }}>
-          {score}
+      {/* Improved UI top section with decorative stars and banner */}
+      <div className="relative mb-6">
+        {/* Transparent horizontal banner */}
+        <div 
+          className="absolute inset-0 w-full h-20 pixel-border"
+          style={{
+            background: 'linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0%, rgba(236, 72, 153, 0.3) 50%, rgba(96, 165, 250, 0.3) 100%)',
+            imageRendering: 'pixelated'
+          }}
+        ></div>
+        
+        {/* Score display with decorative stars */}
+        <div className="relative flex items-center justify-center py-6">
+          {/* Left decorative stars */}
+          <div className="flex items-center space-x-2 mr-8">
+            <div className="w-6 h-6 relative pixel-border">
+              {/* Pixel star */}
+              <div className="absolute top-2 left-2 w-2 h-2 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-1 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-3 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-2 left-1 w-1 h-2 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-2 left-3 w-1 h-2 bg-yellow-300 pixel-border"></div>
+            </div>
+            <div className="w-4 h-4 relative pixel-border">
+              {/* Smaller pixel star */}
+              <div className="absolute top-1 left-1 w-2 h-2 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-0 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-2 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-1 left-0 w-1 h-2 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-1 left-2 w-1 h-2 bg-yellow-400 pixel-border"></div>
+            </div>
+          </div>
+          
+          {/* Score number */}
+          <div className="text-6xl font-bold text-white pixel-text"
+               style={{
+                 fontFamily: 'Arial, sans-serif',
+                 fontWeight: 'bold',
+                 color: 'white',
+                 textShadow: '3px 3px 0px rgba(0,0,0,0.5), -1px -1px 0px rgba(0,0,0,0.5)'
+               }}>
+            {score}
+          </div>
+          
+          {/* Right decorative stars */}
+          <div className="flex items-center space-x-2 ml-8">
+            <div className="w-4 h-4 relative pixel-border">
+              {/* Smaller pixel star */}
+              <div className="absolute top-1 left-1 w-2 h-2 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-0 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-2 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-1 left-0 w-1 h-2 bg-yellow-400 pixel-border"></div>
+              <div className="absolute top-1 left-2 w-1 h-2 bg-yellow-400 pixel-border"></div>
+            </div>
+            <div className="w-6 h-6 relative pixel-border">
+              {/* Pixel star */}
+              <div className="absolute top-2 left-2 w-2 h-2 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-1 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-3 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-2 left-1 w-1 h-2 bg-yellow-300 pixel-border"></div>
+              <div className="absolute top-2 left-3 w-1 h-2 bg-yellow-300 pixel-border"></div>
+            </div>
+          </div>
         </div>
       </div>
       
+      {/* Machine container */}
       <div 
         ref={machineRef}
         className="relative mx-auto rounded-lg p-6 shadow-2xl retro-glow"
