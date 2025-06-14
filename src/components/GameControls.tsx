@@ -37,7 +37,7 @@ const GameControls = ({ onMoveLeft, onMoveRight, onDrop, disabled }: GameControl
         </div>
       </button>
 
-      {/* GO Button with Pixel Font */}
+      {/* GO Button with Updated Font */}
       <button
         onClick={onDrop}
         disabled={disabled}
@@ -47,13 +47,14 @@ const GameControls = ({ onMoveLeft, onMoveRight, onDrop, disabled }: GameControl
           borderRadius: '0px',
           imageRendering: 'pixelated',
           boxShadow: disabled ? 'none' : 'inset 2px 2px 0px rgba(255,255,255,0.3), inset -2px -2px 0px rgba(0,0,0,0.3), 4px 4px 0px rgba(0,0,0,0.2)',
-          fontFamily: '"Courier New", "Lucida Console", monospace',
+          fontFamily: 'Arial, sans-serif',
           fontSize: '18px',
-          textShadow: '2px 2px 0px rgba(0,0,0,0.5)',
-          letterSpacing: '2px'
+          fontWeight: 'bold',
+          color: 'white',
+          letterSpacing: '1px'
         }}
       >
-        GO!
+        GO
       </button>
 
       {/* Right Arrow Button - Pixel Art Style */}

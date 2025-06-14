@@ -110,8 +110,13 @@ const ClawMachine = () => {
   return (
     <div className="relative">
       <div className="text-center mb-6">
-        <div className="text-3xl font-bold text-white pixel-text retro-glow">
-          🏆 {score} 🏆
+        <div className="text-4xl font-bold text-white"
+             style={{
+               fontFamily: 'Arial, sans-serif',
+               fontWeight: 'bold',
+               color: 'white'
+             }}>
+          {score}
         </div>
       </div>
       
