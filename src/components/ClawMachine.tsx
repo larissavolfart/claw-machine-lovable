@@ -16,7 +16,7 @@ interface Toy {
   image: string;
 }
 
-const PLUSH_Y_OFFSET = 20; // Valor fixo para subir os toys
+const PLUSH_Y_OFFSET = 32; // Antes era 20, agora puxado um pouco mais pra cima!
 
 const ClawMachine = () => {
   const [clawPosition, setClawPosition] = useState({ x: 150, y: 20 });
