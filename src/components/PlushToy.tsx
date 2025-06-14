@@ -16,22 +16,29 @@ interface PlushToyProps {
 const PlushToy = ({ toy }: PlushToyProps) => {
   return (
     <div 
-      className="absolute transition-all duration-300 hover:scale-110 z-10"
+      className="absolute transition-all duration-300 hover:scale-125 z-10 float-animation"
       style={{
         left: `${toy.position.x}px`,
         top: `${toy.position.y}px`,
-        transform: `rotate(${Math.random() * 20 - 10}deg)`
+        transform: `rotate(${Math.random() * 15 - 7.5}deg)`
       }}
     >
       <img 
         src={toy.image} 
         alt={toy.type}
-        className="w-12 h-12 pixel-image drop-shadow-sm"
+        className="w-16 h-16 pixel-image"
         style={{
           imageRendering: 'pixelated',
-          filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))'
+          filter: 'drop-shadow(3px 3px 6px rgba(0,0,0,0.4)) brightness(1.1) saturate(1.2)',
+          background: 'transparent'
         }}
       />
+      {/* Cute sparkle effect */}
+      <div className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-300 pixel-border animate-pulse"
+           style={{ 
+             clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+             imageRendering: 'pixelated'
+           }}></div>
     </div>
   );
 };
