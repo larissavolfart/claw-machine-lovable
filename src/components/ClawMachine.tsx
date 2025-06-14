@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import PlushToy from './PlushToy';
 import GameControls from './GameControls';
@@ -110,23 +111,37 @@ const ClawMachine = () => {
   return (
     <div className="relative">
       {/* UI top section: clean counter, no stars, banner remains */}
-      <div className="relative mb-6">
+      <div className="relative mb-6 flex flex-col items-center">
         {/* Transparent horizontal banner */}
         <div 
-          className="absolute inset-0 w-full h-20 pixel-border"
+          className="absolute inset-0 w-full h-16 pixel-border"
           style={{
             background: 'linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0%, rgba(236, 72, 153, 0.3) 50%, rgba(96, 165, 250, 0.3) 100%)',
-            imageRendering: 'pixelated'
+            imageRendering: 'pixelated',
+            borderRadius: "20px",
           }}
         ></div>
-        {/* Centered score number only, in plain white */}
-        <div className="relative flex items-center justify-center py-6">
-          <div className="text-6xl font-bold"
+        {/* Centralized score number, plain white, no shadow */}
+        <div className="relative flex items-center justify-center z-10 py-4">
+          <div
+            className="text-5xl font-bold flex items-center justify-center"
             style={{
               fontFamily: 'Arial, sans-serif',
               color: 'white',
-              textShadow: '3px 3px 0px rgba(0,0,0,0.5), -1px -1px 0px rgba(0,0,0,0.5)'
-            }}>
+              background: "rgba(100,70,200,0.70)", // Suave fundo roxo translúcido
+              borderRadius: "9999px",
+              width: "78px",
+              height: "78px",
+              minWidth: "78px",
+              minHeight: "78px",
+              margin: "0 auto",
+              padding: "0",
+              boxShadow: "none",
+              border: "4px solid #a78bfa", // Roxo claro da paleta tailwind
+              textAlign: "center",
+              lineHeight: "78px",
+            }}
+          >
             {score}
           </div>
         </div>
@@ -245,3 +260,4 @@ const ClawMachine = () => {
 };
 
 export default ClawMachine;
+
