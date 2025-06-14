@@ -10,70 +10,80 @@ interface ClawProps {
 const Claw = ({ position, isDescending, hasToy }: ClawProps) => {
   return (
     <div className="absolute transition-all duration-1000 ease-in-out z-30">
-      {/* Cute Pixelated Cable */}
+      {/* Cable */}
       <div 
         className="absolute pixel-border"
         style={{
           left: `${position.x + 10}px`,
           top: '0px',
           width: '4px',
-          height: `${position.y + 20}px`,
-          background: 'linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%)',
-          border: '1px solid #B8860B',
+          height: `${position.y + 15}px`,
+          background: 'linear-gradient(90deg, #4A5568 0%, #2D3748 50%, #4A5568 100%)',
+          border: '1px solid #1A202C',
           imageRendering: 'pixelated'
         }}
       ></div>
       
-      {/* Cute Claw Body */}
+      {/* Claw Assembly */}
       <div 
         className="absolute transition-all duration-1000 ease-in-out"
         style={{
-          left: `${position.x}px`,
+          left: `${position.x - 2}px`,
           top: `${position.y}px`,
-          transform: isDescending ? 'scale(1.2)' : 'scale(1)'
+          transform: isDescending ? 'scale(1.1)' : 'scale(1)'
         }}
       >
-        {/* Main Claw Head - Cute and Round */}
-        <div className="relative w-6 h-8 pixel-border"
+        {/* Main Claw Head/Mechanism */}
+        <div className="relative w-8 h-6 pixel-border"
              style={{
-               background: 'linear-gradient(145deg, #FF69B4 0%, #FF1493 50%, #C71585 100%)',
-               border: '2px solid #8B008B',
+               background: 'linear-gradient(145deg, #E2E8F0 0%, #CBD5E0 50%, #A0AEC0 100%)',
+               border: '2px solid #4A5568',
                borderRadius: '0px',
                imageRendering: 'pixelated'
              }}>
           
-          {/* Cute Eyes */}
-          <div className="absolute top-1 left-1 w-1 h-1 bg-white pixel-border"></div>
-          <div className="absolute top-1 right-1 w-1 h-1 bg-white pixel-border"></div>
-          
-          {/* Cute Mouth */}
-          <div className="absolute top-3 left-2 w-2 h-1 bg-white pixel-border rounded-none"
-               style={{ imageRendering: 'pixelated' }}></div>
+          {/* Mechanical details */}
+          <div className="absolute top-1 left-1 w-1 h-1 bg-gray-800 pixel-border"></div>
+          <div className="absolute top-1 right-1 w-1 h-1 bg-gray-800 pixel-border"></div>
+          <div className="absolute top-3 left-2 w-4 h-1 bg-gray-600 pixel-border"></div>
         </div>
         
-        {/* Claw Arms - More Colorful and Cute */}
-        <div className="absolute -left-2 top-6 w-3 h-5 pixel-border transform rotate-12"
+        {/* Claw Arms - Three prongs like in reference */}
+        {/* Left Arm */}
+        <div className="absolute -left-1 top-5 w-2 h-6 pixel-border transform rotate-12"
              style={{
-               background: 'linear-gradient(45deg, #FF69B4, #FF1493)',
-               border: '1px solid #8B008B',
-               imageRendering: 'pixelated'
+               background: 'linear-gradient(45deg, #CBD5E0, #A0AEC0)',
+               border: '1px solid #4A5568',
+               imageRendering: 'pixelated',
+               clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 90%)'
              }}></div>
-        <div className="absolute -right-2 top-6 w-3 h-5 pixel-border transform -rotate-12"
+             
+        {/* Right Arm */}
+        <div className="absolute -right-1 top-5 w-2 h-6 pixel-border transform -rotate-12"
              style={{
-               background: 'linear-gradient(45deg, #FF69B4, #FF1493)',
-               border: '1px solid #8B008B',
-               imageRendering: 'pixelated'
+               background: 'linear-gradient(45deg, #CBD5E0, #A0AEC0)',
+               border: '1px solid #4A5568',
+               imageRendering: 'pixelated',
+               clipPath: 'polygon(0 0, 100% 0, 100% 90%, 20% 100%)'
              }}></div>
-        <div className="absolute left-1 top-7 w-3 h-5 pixel-border"
+             
+        {/* Center Arm */}
+        <div className="absolute left-2 top-5 w-2 h-7 pixel-border"
              style={{
-               background: 'linear-gradient(180deg, #FF69B4, #FF1493)',
-               border: '1px solid #8B008B',
-               imageRendering: 'pixelated'
+               background: 'linear-gradient(180deg, #CBD5E0, #A0AEC0)',
+               border: '1px solid #4A5568',
+               imageRendering: 'pixelated',
+               clipPath: 'polygon(20% 0, 80% 0, 100% 100%, 0 100%)'
              }}></div>
+        
+        {/* Claw Tips */}
+        <div className="absolute -left-1 top-10 w-1 h-2 bg-gray-700 pixel-border transform rotate-12"></div>
+        <div className="absolute -right-1 top-10 w-1 h-2 bg-gray-700 pixel-border transform -rotate-12"></div>
+        <div className="absolute left-3 top-11 w-1 h-2 bg-gray-700 pixel-border"></div>
         
         {/* Toy attached to claw */}
         {hasToy && (
-          <div className="absolute top-12 left-1/2 transform -translate-x-1/2">
+          <div className="absolute top-14 left-1/2 transform -translate-x-1/2">
             <img 
               src={hasToy.image} 
               alt={hasToy.type}
