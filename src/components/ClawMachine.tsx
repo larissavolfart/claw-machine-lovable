@@ -109,7 +109,7 @@ const ClawMachine = () => {
 
   return (
     <div className="relative">
-      {/* Improved UI top section with decorative stars and banner */}
+      {/* UI top section: clean counter, no stars, banner remains */}
       <div className="relative mb-6">
         {/* Transparent horizontal banner */}
         <div 
@@ -119,62 +119,19 @@ const ClawMachine = () => {
             imageRendering: 'pixelated'
           }}
         ></div>
-        
-        {/* Score display with decorative stars */}
+        {/* Centered score number only, in plain white */}
         <div className="relative flex items-center justify-center py-6">
-          {/* Left decorative stars */}
-          <div className="flex items-center space-x-2 mr-8">
-            <div className="w-6 h-6 relative pixel-border">
-              {/* Pixel star */}
-              <div className="absolute top-2 left-2 w-2 h-2 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-1 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-3 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-2 left-1 w-1 h-2 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-2 left-3 w-1 h-2 bg-yellow-300 pixel-border"></div>
-            </div>
-            <div className="w-4 h-4 relative pixel-border">
-              {/* Smaller pixel star */}
-              <div className="absolute top-1 left-1 w-2 h-2 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-0 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-2 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-1 left-0 w-1 h-2 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-1 left-2 w-1 h-2 bg-yellow-400 pixel-border"></div>
-            </div>
-          </div>
-          
-          {/* Score number */}
-          <div className="text-6xl font-bold text-white pixel-text"
-               style={{
-                 fontFamily: 'Arial, sans-serif',
-                 fontWeight: 'bold',
-                 color: 'white',
-                 textShadow: '3px 3px 0px rgba(0,0,0,0.5), -1px -1px 0px rgba(0,0,0,0.5)'
-               }}>
+          <div className="text-6xl font-bold"
+            style={{
+              fontFamily: 'Arial, sans-serif',
+              color: 'white',
+              textShadow: '3px 3px 0px rgba(0,0,0,0.5), -1px -1px 0px rgba(0,0,0,0.5)'
+            }}>
             {score}
-          </div>
-          
-          {/* Right decorative stars */}
-          <div className="flex items-center space-x-2 ml-8">
-            <div className="w-4 h-4 relative pixel-border">
-              {/* Smaller pixel star */}
-              <div className="absolute top-1 left-1 w-2 h-2 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-0 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-2 left-1 w-2 h-1 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-1 left-0 w-1 h-2 bg-yellow-400 pixel-border"></div>
-              <div className="absolute top-1 left-2 w-1 h-2 bg-yellow-400 pixel-border"></div>
-            </div>
-            <div className="w-6 h-6 relative pixel-border">
-              {/* Pixel star */}
-              <div className="absolute top-2 left-2 w-2 h-2 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-1 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-3 left-2 w-2 h-1 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-2 left-1 w-1 h-2 bg-yellow-300 pixel-border"></div>
-              <div className="absolute top-2 left-3 w-1 h-2 bg-yellow-300 pixel-border"></div>
-            </div>
           </div>
         </div>
       </div>
-      
+
       {/* Machine container */}
       <div 
         ref={machineRef}
