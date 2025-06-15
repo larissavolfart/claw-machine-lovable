@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import PlushToy from './PlushToy';
 import GameControls from './GameControls';
@@ -155,7 +154,7 @@ const ClawMachine = () => {
         className="relative mx-auto p-6 shadow-2xl"
         style={{ 
           width: '380px', 
-          height: '420px',
+          height: '400px', // Reduzido de 420px para 400px
           background: 'linear-gradient(145deg, #FFB6C1 0%, #FFE4E1 30%, #E6E6FA 70%, #F0F8FF 100%)',
           border: '6px solid #FFB6C1',
           borderRadius: '32px',
@@ -213,8 +212,8 @@ const ClawMachine = () => {
             </div>
           </div>
           
-          {/* Control Panel - mais arredondado */}
-          <div className="h-14 flex items-center justify-center"
+          {/* Control Panel - mais arredondado e expandido para preencher melhor */}
+          <div className="h-16 flex items-center justify-center" // Aumentado de h-14 para h-16
                style={{
                  background: 'linear-gradient(90deg, #FFB6C1 0%, #DDA0DD 30%, #F0E68C 70%, #FFB6C1 100%)',
                  borderRadius: '0 0 20px 20px',
@@ -230,14 +229,6 @@ const ClawMachine = () => {
             </div>
           </div>
         </div>
-
-        {/* Coin Slot - mais fofo */}
-        <div className="absolute bottom-4 left-8 w-12 h-6 bg-gradient-to-br from-gray-600 to-gray-800"
-             style={{ 
-               borderRadius: '12px',
-               border: '2px solid #FFB6C1',
-               boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 8px rgba(255, 182, 193, 0.3)',
-             }}></div>
       </div>
 
       <GameControls 
