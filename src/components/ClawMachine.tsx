@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import PlushToy from './PlushToy';
 import GameControls from './GameControls';
@@ -113,34 +114,34 @@ const ClawMachine = () => {
     <div className="relative">
       {/* UI top section: clean counter, no stars, banner remains */}
       <div className="relative mb-6 flex flex-col items-center">
-        {/* Transparent horizontal banner */}
+        {/* Transparent horizontal banner - mais arredondado */}
         <div 
-          className="absolute inset-0 w-full h-16 pixel-border"
+          className="absolute inset-0 w-full h-16"
           style={{
-            background: 'linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0%, rgba(236, 72, 153, 0.3) 50%, rgba(96, 165, 250, 0.3) 100%)',
-            imageRendering: 'pixelated',
-            borderRadius: "20px",
+            background: 'linear-gradient(90deg, rgba(255, 182, 193, 0.4) 0%, rgba(255, 192, 203, 0.4) 30%, rgba(221, 160, 221, 0.4) 70%, rgba(173, 216, 230, 0.4) 100%)',
+            borderRadius: "24px",
+            boxShadow: '0 8px 32px rgba(255, 182, 193, 0.3)',
           }}
         ></div>
-        {/* Centralized score number, plain white, no shadow */}
+        {/* Score mais fofo */}
         <div className="relative flex items-center justify-center z-10 py-4">
           <div
             className="text-5xl font-bold flex items-center justify-center"
             style={{
               fontFamily: 'Arial, sans-serif',
               color: 'white',
-              background: "rgba(100,70,200,0.70)", // Suave fundo roxo translúcido
-              borderRadius: "9999px",
+              background: "linear-gradient(145deg, rgba(255, 182, 193, 0.8), rgba(255, 192, 203, 0.9))",
+              borderRadius: "50%",
               width: "78px",
               height: "78px",
               minWidth: "78px",
               minHeight: "78px",
               margin: "0 auto",
               padding: "0",
-              boxShadow: "none",
-              border: "4px solid #a78bfa", // Roxo claro da paleta tailwind
+              border: "4px solid #FFB6C1",
               textAlign: "center",
               lineHeight: "78px",
+              boxShadow: '0 4px 20px rgba(255, 182, 193, 0.4), inset 0 2px 10px rgba(255, 255, 255, 0.3)',
             }}
           >
             {score}
@@ -148,37 +149,41 @@ const ClawMachine = () => {
         </div>
       </div>
 
-      {/* Machine container */}
+      {/* Machine container - muito mais fofa */}
       <div 
         ref={machineRef}
-        className="relative mx-auto rounded-lg p-6 shadow-2xl retro-glow"
+        className="relative mx-auto p-6 shadow-2xl"
         style={{ 
           width: '380px', 
           height: '420px',
-          background: 'linear-gradient(145deg, #8B5CF6 0%, #EC4899 50%, #60A5FA 100%)',
-          border: '4px solid #4C1D95',
-          imageRendering: 'pixelated'
+          background: 'linear-gradient(145deg, #FFB6C1 0%, #FFE4E1 30%, #E6E6FA 70%, #F0F8FF 100%)',
+          border: '6px solid #FFB6C1',
+          borderRadius: '32px',
+          boxShadow: '0 16px 40px rgba(255, 182, 193, 0.4), 0 8px 20px rgba(255, 192, 203, 0.3), inset 0 4px 20px rgba(255, 255, 255, 0.2)',
         }}
       >
-        {/* Machine Frame */}
-        <div className="absolute inset-4 rounded border-4 border-gray-800 overflow-hidden pixel-border"
+        {/* Machine Frame - mais arredondado */}
+        <div className="absolute inset-4 overflow-hidden"
              style={{
-               background: 'linear-gradient(145deg, #FFB6C1 0%, #87CEEB 50%, #DDA0DD 100%)',
-               imageRendering: 'pixelated'
+               background: 'linear-gradient(145deg, #FFF0F5 0%, #F8F8FF 50%, #F0FFFF 100%)',
+               borderRadius: '24px',
+               border: '4px solid #FFB6C1',
+               boxShadow: 'inset 0 4px 15px rgba(255, 182, 193, 0.2)',
              }}>
           
-          {/* Top Rainbow Section */}
-          <div className="h-10 pixel-border"
+          {/* Top Rainbow Section - mais suave */}
+          <div className="h-10"
                style={{
-                 background: 'linear-gradient(90deg, #FF69B4 0%, #FFD700 25%, #00FF7F 50%, #1E90FF 75%, #9370DB 100%)',
-                 imageRendering: 'pixelated'
+                 background: 'linear-gradient(90deg, #FFB6C1 0%, #FFEFD5 20%, #E0FFFF 40%, #F0E68C 60%, #DDA0DD 80%, #FFB6C1 100%)',
+                 borderRadius: '20px 20px 0 0',
                }}></div>
           
-          {/* Glass Panel */}
-          <div className="relative h-64 border-2 border-gray-600 pixel-border"
+          {/* Glass Panel - mais delicado */}
+          <div className="relative h-64"
                style={{
-                 background: 'linear-gradient(180deg, rgba(173, 216, 230, 0.3) 0%, rgba(135, 206, 235, 0.2) 100%)',
-                 imageRendering: 'pixelated'
+                 background: 'linear-gradient(180deg, rgba(240, 248, 255, 0.6) 0%, rgba(230, 230, 250, 0.4) 100%)',
+                 borderRadius: '0 0 20px 20px',
+                 border: '2px solid rgba(255, 182, 193, 0.3)',
                }}>
             
             {/* Claw */}
@@ -196,35 +201,43 @@ const ClawMachine = () => {
               />
             ))}
             
-            {/* Collection Box - More Pixelated */}
-            <div className="absolute bottom-2 right-2 w-14 h-10 border-3 border-gray-800 pixel-border"
+            {/* Collection Box - mais fofinho */}
+            <div className="absolute bottom-2 right-2 w-14 h-10"
                  style={{
                    background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-                   imageRendering: 'pixelated'
+                   borderRadius: '12px',
+                   border: '3px solid #FFB6C1',
+                   boxShadow: '0 4px 12px rgba(255, 215, 0, 0.3)',
                  }}>
-              <div className="text-xs text-center text-gray-800 font-bold pixel-text mt-1">📦</div>
+              <div className="text-xs text-center text-gray-800 font-bold mt-1">📦</div>
             </div>
           </div>
           
-          {/* Control Panel */}
-          <div className="h-14 border-t-2 border-gray-600 flex items-center justify-center pixel-border"
+          {/* Control Panel - mais arredondado */}
+          <div className="h-14 flex items-center justify-center"
                style={{
-                 background: 'linear-gradient(90deg, #9370DB 0%, #FF69B4 50%, #FFD700 100%)',
-                 imageRendering: 'pixelated'
+                 background: 'linear-gradient(90deg, #FFB6C1 0%, #DDA0DD 30%, #F0E68C 70%, #FFB6C1 100%)',
+                 borderRadius: '0 0 20px 20px',
+                 borderTop: '2px solid rgba(255, 182, 193, 0.5)',
                }}>
-            <div className="flex space-x-3">
-              <div className="w-4 h-4 bg-red-500 border-2 border-gray-800 pixel-border animate-pulse"></div>
-              <div className="w-4 h-4 bg-yellow-400 border-2 border-gray-800 pixel-border animate-pulse"
-                   style={{ animationDelay: '0.5s' }}></div>
-              <div className="w-4 h-4 bg-green-400 border-2 border-gray-800 pixel-border animate-pulse"
-                   style={{ animationDelay: '1s' }}></div>
+            <div className="flex space-x-4">
+              <div className="w-5 h-5 bg-gradient-to-br from-red-400 to-red-500 animate-pulse"
+                   style={{ borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(239, 68, 68, 0.4)' }}></div>
+              <div className="w-5 h-5 bg-gradient-to-br from-yellow-400 to-yellow-500 animate-pulse"
+                   style={{ borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(245, 158, 11, 0.4)', animationDelay: '0.5s' }}></div>
+              <div className="w-5 h-5 bg-gradient-to-br from-green-400 to-green-500 animate-pulse"
+                   style={{ borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(34, 197, 94, 0.4)', animationDelay: '1s' }}></div>
             </div>
           </div>
         </div>
 
-        {/* Coin Slot */}
-        <div className="absolute bottom-3 left-8 w-10 h-6 bg-gray-900 border-2 border-gray-600 pixel-border"
-             style={{ imageRendering: 'pixelated' }}></div>
+        {/* Coin Slot - mais fofo */}
+        <div className="absolute bottom-4 left-8 w-12 h-6 bg-gradient-to-br from-gray-600 to-gray-800"
+             style={{ 
+               borderRadius: '12px',
+               border: '2px solid #FFB6C1',
+               boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 8px rgba(255, 182, 193, 0.3)',
+             }}></div>
       </div>
 
       <GameControls 
@@ -234,24 +247,29 @@ const ClawMachine = () => {
         disabled={isClawMoving}
       />
 
-      {/* Success Animation - Only +1, no text */}
+      {/* Success Animation - mais fofa */}
       {showSuccess.show && showSuccess.toy && (
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
-          <div className="bg-white rounded-lg p-8 shadow-2xl border-4 border-yellow-400 animate-bounce pixel-border retro-glow"
-               style={{ imageRendering: 'pixelated' }}>
+          <div className="bg-white p-8 shadow-2xl animate-bounce"
+               style={{ 
+                 borderRadius: '24px',
+                 border: '4px solid #FFD700',
+                 boxShadow: '0 16px 40px rgba(255, 215, 0, 0.4), 0 8px 20px rgba(255, 182, 193, 0.3)',
+                 background: 'linear-gradient(145deg, #FFFAF0, #FFF8DC)',
+               }}>
             <img 
               src={showSuccess.toy.image} 
               alt="Caught toy"
-              className="w-32 h-32 mx-auto mb-4 pixel-image"
+              className="w-32 h-32 mx-auto mb-4"
               style={{
-                filter: 'drop-shadow(4px 4px 8px rgba(0,0,0,0.3)) brightness(1.2)',
+                filter: 'drop-shadow(4px 4px 12px rgba(0,0,0,0.2)) brightness(1.2)',
                 imageRendering: 'pixelated'
               }}
             />
-            <div className="text-4xl font-bold text-center text-yellow-600 pixel-text"
+            <div className="text-4xl font-bold text-center text-yellow-600"
                  style={{
                    fontFamily: '"Courier New", "Lucida Console", monospace',
-                   textShadow: '2px 2px 0px rgba(0,0,0,0.5)'
+                   textShadow: '2px 2px 0px rgba(255,255,255,0.8), 0 0 10px rgba(255, 215, 0, 0.5)'
                  }}>+1</div>
           </div>
         </div>
